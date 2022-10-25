@@ -1,16 +1,58 @@
-function displayEvents(event: unknown) {
-  if (typeof event === "string") event.length;
-  event.show();
-  event.override();
-}
+// 1
 
-function reject(msg: string): never {
-  throw new Error(msg);
-}
+type Users = {
+  name: string;
+  age: number;
+  occupation?: string;
+};
 
-//....
-console.log("100 lines of code");
+let users: Users[] = [
+  {
+    name: "John Smith",
+    age: 30,
+    occupation: "Software engineer",
+  },
+  {
+    name: "Kate Müller",
+    age: 28,
+  },
+];
 
-reject("rejected");
+// 2
 
-console.log("un reachable code");
+type Bird = {
+  fly: () => void;
+  canWalk: boolean;
+};
+
+type Fish = {
+  swim: () => void;
+};
+
+type Pet = Bird | Fish;
+
+const fish: Pet = {
+  swim() {},
+};
+
+const bird: Pet = {
+  fly() {},
+  canWalk: true,
+};
+
+// 3
+
+type DaysOfWeek = "Monday" | "Tuesday";
+
+// 4
+// let user = getUser();
+// user?.address?.street
+
+// foo ?? bar();
+
+// 5
+// we don't check the type
+let value: unknown = "a";
+if (typeof value === "string") console.log(value.toUpperCase());
+
+// 6
