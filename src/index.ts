@@ -1,3 +1,5 @@
-type Quantity = 50 | 100;
+function greet(name: string) {
+  console.log(name);
+}
 
-let quantity: Quantity = 50;
+greet(null);
