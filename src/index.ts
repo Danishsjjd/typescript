@@ -1,5 +1,15 @@
-function greet(name: string) {
-  console.log(name);
+type Customer = {
+  birthday: Date;
+};
+
+function getCustomer(id: number): Customer | null {
+  return id === 0 ? null : { birthday: new Date() };
 }
 
-greet(null);
+const customer = getCustomer(1);
+
+customer?.birthday.getFullYear();
+
+// optional chaining
+// optional access element
+// optional call
