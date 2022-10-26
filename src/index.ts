@@ -1,14 +1,11 @@
 class Account {
-  readonly id: number;
-  name: string;
-  private _balance: number;
   nickname?: string;
 
-  constructor(id: number, owner: string, balance: number) {
-    this.name = owner;
-    this.id = id;
-    this._balance = balance;
-  }
+  constructor(
+    readonly id: number,
+    public owner: string,
+    private _balance: number
+  ) {}
 
   deposit(amount: number): void {
     if (amount <= 0) throw new Error("Invalid amount");
@@ -29,5 +26,3 @@ class Account {
 const account = new Account(1, "Danish", 0);
 
 account.deposit(100);
-
-console.log(account.balance);
