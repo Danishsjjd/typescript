@@ -1,13 +1,19 @@
-function wrapInArray<T>(value: T): T[] {
-  return [value];
+interface Users {
+  username: string;
 }
 
-const numbers = wrapInArray<string>("1");
-
-class ArrayUtils {
-  public static wrapInArray<T>(value: T): T[] {
-    return [value];
-  }
+interface Product {
+  title: string;
 }
 
-const numbers1 = ArrayUtils.wrapInArray(3);
+interface Results<T> {
+  data: T | null;
+  error: string | null;
+  endPoint: string;
+}
+
+function fetch<T>(endPoint: string): Results<T> {
+  return { data: null, error: null, endPoint };
+}
+
+const results = fetch<Product>("users");
