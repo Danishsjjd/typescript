@@ -1,7 +1,8 @@
 class Account {
-  id: number;
+  readonly id: number;
   owner: string;
   balance: number;
+  nickname?: string;
 
   constructor(id: number, owner: string, balance: number) {
     this.owner = owner;
@@ -18,5 +19,3 @@ class Account {
 const account = new Account(1, "Danish", 0);
 
 account.deposit(100);
-
-console.log(account);
