@@ -1,49 +1,9 @@
-// 1
-class Logger {
-  constructor(public logFile: string) {}
+// class 2
+// * the problem generic is solving is to set type during declaration so we don't have to repeat class or use union operator
 
-  log(message: string): void {
-    console.log(`writing ${message} to ${this.logFile} file`);
-  }
+// class 3
+class KeyValuePair<K, V> {
+  constructor(public key: K, public value: V) {}
 }
-
-// 2
-class Person {
-  constructor(public firstName: string, public lastName: string) {}
-  public get fullName(): string {
-    return this.firstName + " " + this.lastName;
-  }
-}
-
-class Employee extends Person {
-  constructor(public salary: number, firstName: string, lastName: string) {
-    super(firstName, lastName);
-  }
-}
-
-// 3
-// ? What is the difference between private and protected members?
-// * private are not inherited by child classes
-
-// 4
-interface Address {
-  street: string;
-  city: string;
-  zipCode: number;
-}
-
-interface EmployeeInterface {
-  name: string;
-  salary: number;
-  address: Address;
-}
-
-let employee: EmployeeInterface = {
-  name: "John Smith",
-  salary: 50_000,
-  address: {
-    street: "Flinders st",
-    city: "Melbourne",
-    zipCode: 3144,
-  },
-};
+// most of the time we don't have to explicitly write generic types
+const pair = new KeyValuePair<number, string>(1, "2");
