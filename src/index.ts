@@ -1,18 +1,22 @@
-class SeatAssignment {
-  [seatNumber: string]: string;
+class Ride {
+  private static _activeRides: number = 0;
+
+  start() {
+    Ride._activeRides++;
+  }
+  stop() {
+    Ride._activeRides--;
+  }
+
+  public static get activeRides(): number {
+    return Ride._activeRides;
+  }
 }
 
-const seats = new SeatAssignment();
+const ride1 = new Ride();
+ride1.start();
 
-seats.a1 = "Danish";
-seats.a2 = "sajjad";
+const ride2 = new Ride();
+ride2.start();
 
-interface NameByNumber {
-  [names: string]: string;
-}
-
-const obj: NameByNumber = {};
-
-obj.name1 = "Danish";
-obj.name3 = "Muneeb";
-obj.name2 = "Sajjad";
+console.log(Ride.activeRides);
