@@ -1,19 +1,19 @@
-interface Users {
-  username: string;
+function echo<T extends number | string>(value: T): T {
+  return value;
 }
 
-interface Product {
-  title: string;
+echo("true");
+
+class Person {
+  constructor(public name: string) {}
 }
 
-interface Results<T> {
-  data: T | null;
-  error: string | null;
-  endPoint: string;
+class Customer extends Person {}
+
+function echo2<T extends Person>(value: T): T {
+  return value;
 }
 
-function fetch<T>(endPoint: string): Results<T> {
-  return { data: null, error: null, endPoint };
-}
-
-const results = fetch<Product>("users");
+echo2(new Person("str"));
+echo2(new Customer("str"));
+echo2({ name: "str" });
