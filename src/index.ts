@@ -1,16 +1,35 @@
-abstract class Shape {
-  constructor(public color: string) {}
-
-  abstract render(): void;
+interface Calender {
+  name: string;
+  addEvent(): void;
+  removeEvent(): void;
 }
 
-class Circle extends Shape {
-  constructor(public size: number, color: string) {
-    super(color);
+interface CloudCalender extends Calender {
+  sync(): void;
+}
+
+class GoogleCalender implements Calender {
+  constructor(public name: string) {}
+
+  addEvent(): void {
+    throw new Error("Method not implemented.");
   }
-  override render(): void {}
+  removeEvent(): void {
+    throw new Error("Method not implemented.");
+  }
 }
 
-const shape = new Shape("red");
+type Person = {
+  name: string;
+  walk(): void;
+};
 
-shape.render();
+// type is not extendable
+
+class Students implements Person {
+  constructor(public name: string) {}
+
+  walk(): void {
+    throw new Error("Method not implemented.");
+  }
+}
