@@ -1,28 +1,18 @@
-class Account {
-  nickname?: string;
-
-  constructor(
-    readonly id: number,
-    public owner: string,
-    private _balance: number
-  ) {}
-
-  deposit(amount: number): void {
-    if (amount <= 0) throw new Error("Invalid amount");
-    // record transactions
-    this._balance = amount;
-    this.transactions(amount);
-  }
-
-  private transactions(deposit: number) {
-    console.log(deposit);
-  }
-
-  get balance(): number {
-    return this._balance;
-  }
+class SeatAssignment {
+  [seatNumber: string]: string;
 }
 
-const account = new Account(1, "Danish", 0);
+const seats = new SeatAssignment();
 
-account.deposit(100);
+seats.a1 = "Danish";
+seats.a2 = "sajjad";
+
+interface NameByNumber {
+  [names: string]: string;
+}
+
+const obj: NameByNumber = {};
+
+obj.name1 = "Danish";
+obj.name3 = "Muneeb";
+obj.name2 = "Sajjad";
