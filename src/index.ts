@@ -1,19 +1,33 @@
-function echo<T extends number | string>(value: T): T {
-  return value;
+// When extending generic classes, we have three options: can pass on generic type
+// parameters, so the derived classes will have the same generic type parameters.
+// Alternatively, we can restrict or fix them.
+
+interface Product {
+  name: string;
+  price: number;
 }
 
-echo("true");
-
-class Person {
-  constructor(public name: string) {}
+class Store<T> {
+  protected _object: T[] = [];
+  add(obj: T): void {
+    this._object.push(obj);
+  }
 }
 
-class Customer extends Person {}
-
-function echo2<T extends Person>(value: T): T {
-  return value;
+// Pass on the generic type parameter
+class CompressedStore<T> extends Store<T> {
+  compress() {}
 }
 
-echo2(new Person("str"));
-echo2(new Customer("str"));
-echo2({ name: "str" });
+// restrict the generic type parameter
+class SearchableStore<T extends { name: string }> extends Store<T> {
+  find(name: string): T | undefined {
+    return this._object.find(({ name: id }) => id === name);
+  }
+}
+// fix the generic type parameter
+class ProductsStore extends Store<Product> {
+  filterByCategory(category: string): Product[] {
+    return [];
+  }
+}
