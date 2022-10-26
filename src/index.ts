@@ -1,22 +1,21 @@
-class Ride {
-  private static _activeRides: number = 0;
+class Person {
+  constructor(public firstName: string, public lastName: string) {}
 
-  start() {
-    Ride._activeRides++;
-  }
-  stop() {
-    Ride._activeRides--;
-  }
-
-  public static get activeRides(): number {
-    return Ride._activeRides;
+  getFullName() {
+    return this.firstName + " " + this.lastName;
   }
 }
 
-const ride1 = new Ride();
-ride1.start();
+class Student extends Person {
+  constructor(public studentId: string, firstName, lastName) {
+    super(firstName, lastName);
+  }
 
-const ride2 = new Ride();
-ride2.start();
+  giveTest() {
+    console.log("giving test");
+  }
+}
 
-console.log(Ride.activeRides);
+const student = new Student("2", "Danish", "Sajjad");
+
+console.log(student.getFullName());
