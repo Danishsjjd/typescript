@@ -14,3 +14,9 @@ class Account {
     this.balance = amount;
   }
 }
+
+const account = new Account(1, "Danish", 0);
+
+account.deposit(100);
+
+console.log(account);
