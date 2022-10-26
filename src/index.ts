@@ -1,26 +1,21 @@
-// When extending generic classes, we have three options: can pass on generic type
-// parameters, so the derived classes will have the same generic type parameters.
-// Alternatively, we can restrict or fix them.
-
 interface Product {
   name: string;
   price: number;
 }
 
-class Store<T> {
-  protected _object: T[] = [];
-  add(obj: T): void {
-    this._object.push(obj);
-  }
-  find(property: keyof T, value: unknown): T | undefined {
-    return this._object.find((obj) => obj[property] === value);
-  }
+interface Customer {
+  id: number;
 }
 
-const store = new Store<Product>();
+type ReadOnly<T> = {
+  readonly [k in keyof T]: T[k];
+};
 
-store.add({ name: "a", price: 1 });
+const readCustomer: ReadOnly<Customer> = {
+  id: 3,
+};
 
-store.find("name", "a");
-store.find("price", 1);
-store.find("nonExistingProperty", 1);
+const readProduct: ReadOnly<Product> = {
+  name: "str",
+  price: 3,
+};
