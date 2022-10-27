@@ -1,3 +1,7 @@
+// 9 parameter decorators
+// probably no need to learn
+// if so good to go
+
 interface Account {
   password: string;
 }
