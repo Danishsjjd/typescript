@@ -1,5 +1,5 @@
 import { calculateTax } from "./tax";
 
-const tax = calculateTax(300);
+const tax = calculateTax();
 
 console.log(tax);
