@@ -1,5 +1,5 @@
-import { Shape } from "./Shape";
+import { Circle } from "./shapes";
 
-let shape = new Shape(1);
+let circle = new Circle(1);
 
-console.log(shape.size);
+console.log(circle.size);

@@ -1,3 +1,3 @@
-export class Shape {
+export class Circle {
   constructor(public size: number) {}
 }
