@@ -1,5 +1,5 @@
-import { Circle } from "./shapes";
+import { calculateTax } from "./tax";
 
-let circle = new Circle(1);
+const tax = calculateTax(300);
 
-console.log(circle.size);
+console.log(tax);
