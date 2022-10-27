@@ -1,8 +1,5 @@
-function Sauce(sauce: string) {
-  return (constructor: Function) => {
-    constructor.prototype.sauce = sauce;
-  };
-}
+import { Shape } from "./Shape";
 
-@Sauce("pesto")
-class Pizza {}
+let shape = new Shape(1);
+
+console.log(shape.size);
