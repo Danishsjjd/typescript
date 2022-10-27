@@ -1,24 +1,19 @@
-type DecoratorOptions = {
-  select: string;
-};
-
-// factory decorator
-function Component(options: DecoratorOptions) {
-  return (constructor: Function) => {
-    console.log("component decorator called");
-    constructor.prototype.ID = Date.now();
-    constructor.prototype.options = options;
-    constructor.prototype.insertInDOM = (): string => {
-      return "Inserting realtime hot module replacement 🔥🔥🔥";
-    };
+function Log(target: any, propertyKey: string, descriptor: PropertyDescriptor) {
+  const original = descriptor.value as Function;
+  descriptor.value = function (...args: any) {
+    console.log("Before");
+    original.call(this, ...args);
+    console.log("After");
   };
 }
 
-function Pipe(constructor: Function): void {
-  console.log("pip constructor called");
-  constructor.prototype.pipe = true;
+class ProfileComponent {
+  @Log
+  say(msg: string): void {
+    console.log("Hello ", msg);
+  }
 }
 
-@Component({ select: "#my-profile" })
-@Pipe
-class ProfileComponent {}
+const profile = new ProfileComponent();
+
+profile.say("World");
