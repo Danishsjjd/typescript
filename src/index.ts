@@ -1,42 +1,34 @@
-function Log(target: any, propertyKey: string, descriptor: PropertyDescriptor) {
-  const original = descriptor.value as Function;
-  console.log("target is", target);
-  console.log("propertyKey is", propertyKey);
-  descriptor.value = function (...args: any) {
-    console.log("Before");
-    original.call(this, ...args);
-    console.log("After");
+interface Account {
+  password: string;
+}
+
+function MinLength(length: number) {
+  return (target: any, propertyName: PropertyKey) => {
+    let value: string;
+
+    const descripter: PropertyDescriptor = {
+      get() {
+        return value;
+      },
+      set(v: string) {
+        if (v.length < length) throw new Error(`Length is less than ${length}`);
+        value = v;
+      },
+    };
+
+    Object.defineProperty(target, propertyName, descripter);
   };
 }
 
-function MyCapitalize(
-  target: any,
-  propertyKey: string,
-  descriptor: PropertyDescriptor
-) {
-  const original = descriptor.get;
-  descriptor.get = function () {
-    const results = original?.call(this);
-    return typeof results === "string" ? results.toUpperCase() : results;
-  };
-}
+class User implements Account {
+  @MinLength(4)
+  password: string;
 
-class ProfileComponent {
-  constructor(public firstName: string, public lastName: string) {}
-
-  @Log
-  say(msg: string): void {
-    console.log("Hello ", msg);
-  }
-
-  @MyCapitalize
-  get fullName(): string {
-    return `${this.firstName} ${this.lastName}`;
+  constructor(password: string) {
+    this.password = password;
   }
 }
 
-const profile = new ProfileComponent("danish", "sajjad");
-
-profile.say("World");
-
-console.log(profile.fullName);
+const danish = new User("1234");
+danish.password = "12";
+console.log(danish.password);
